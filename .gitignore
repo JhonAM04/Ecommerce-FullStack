@@ -1,0 +1,20 @@
+# Ignorar entorno virtual de Python (backend)
+back/venv/
+back/.venv/
+
+# Ignorar archivos de entorno del backend
+back/.env
+
+# Ignorar archivos de Python compilados
+__pycache__/
+*.pyc
+
+# Ignorar dependencias del frontend (Node.js)
+front/node_modules/
+
+# Ignorar archivos de configuración de sistema/editor
+*.log
+.DS_Store
+.env
+**/.env
+.vscode/
