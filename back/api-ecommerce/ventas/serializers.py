@@ -15,11 +15,18 @@ class PedidosSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         detalle_Pedido = validated_data.pop('detalles')
-        pedido = Pedidos.objects.create(**validated_data)
-        total = 0
         for detalle in detalle_Pedido:
+            producto = detalle['producto']
+            cantidad = detalle['cantidad']
+            if cantidad > producto.stock:
+                raise serializers.ValidationError(f"Stock insuficiente para el producto '{producto.nombre}'. Disponible: {producto.stock}")
+            pedido = Pedidos.objects.create(**validated_data)
+            total = 0
+            producto.stock -= cantidad
+            producto.save()
             PedidoDetalle.objects.create(pedido=pedido, **detalle)
             total += detalle['precioUnitario']*detalle['cantidad']
+            
         pedido.total = total
         pedido.save()
         return pedido
