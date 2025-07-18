@@ -1,10 +1,13 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Paths } from '../../router/Routes'
+import { useUser } from '../contexts/UsuarioContext'
 
 
 const Navbar = () => {
+  const {perfil, LogOut} = useUser()
+  const Navigate = useNavigate()
   return (
     <Disclosure as="nav" className="fixed bg-gray-800 w-screen z-100">
       <div className="mx-auto max-w-390 px-2 sm:px-6 lg:px-8">
@@ -37,16 +40,13 @@ const Navbar = () => {
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
+            {
+              perfil? <Menu as="div" className="relative ml-3">
               <div>
                 <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    className="size-8 rounded-full"
-                  />
+                  <p className='text-white'>{perfil.nombre} {perfil.apellido}</p>
                 </MenuButton>
               </div>
               <MenuItems
@@ -71,14 +71,15 @@ const Navbar = () => {
                 </MenuItem>
                 <MenuItem>
                   <a
-                    href="#"
+                    onClick={LogOut}
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden"
                   >
                     Sign out
                   </a>
                 </MenuItem>
               </MenuItems>
-            </Menu>
+            </Menu>: <button type="button" onClick={()=>{Navigate(Paths.Login)}} className="text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Login</button>
+            }
           </div>
         </div>
       </div>

@@ -26,6 +26,7 @@ const Api = () => {
             }else{
                 toast.success('Inicio de sesion Exitoso')
                 localStorage.setItem('session',JSON.stringify(data))
+                console.log(data.access)
                 navigate(Paths.Home)
             }
         })
@@ -38,11 +39,22 @@ const Api = () => {
         return data
     }
 
+    const GetPerfil = async(token:string) => {
+        const bd = await fetch(`${URL}profile`,{
+            method: 'GET',
+            headers: {'Content-Type':'application/json',
+                      'Authorization': `Bearer ${token}`
+            }
+        })
+        const data = await bd.json()
+        return data
+    }
+
 
 
 
   return {
-    ApiLogin, ListProductos
+    ApiLogin, ListProductos, GetPerfil
   }
 }
 

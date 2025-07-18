@@ -1,9 +1,14 @@
 import AppRoutes from "./router/AppRoutes"
 import './App.css'
+import { Toaster } from "sonner"
+import { UsuarioProvider } from "./shared/contexts/UsuarioContext"
 
 const App = () => {
   return (
-    <AppRoutes />
+    <UsuarioProvider>
+        <Toaster position="bottom-right" richColors />
+        <AppRoutes />
+    </UsuarioProvider>
   )
 }
 

@@ -1,9 +1,10 @@
 
-import Api from "../shared/hooks/Api"
+import { useUser } from "../shared/contexts/UsuarioContext"
 
 
 const Login = () => {
-  const {ApiLogin} = Api()
+  
+  const {Login} = useUser()
 
   const login = async(e:React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault()
@@ -15,7 +16,7 @@ const Login = () => {
         [k:string]: string
       }
   
-      await ApiLogin(usuario, password)
+      await Login(usuario, password)
     }
 
 

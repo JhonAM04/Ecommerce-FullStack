@@ -9,3 +9,11 @@ export type Productos = {
     activo: 'A'|'I'
     imagen: string
 }
+
+export type Perfil = {
+    id: number
+    nombre: string
+    apellido: string
+    email: string
+    username: string
+}
