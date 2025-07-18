@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from .serializers import RegistroSerializer
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
@@ -39,3 +40,16 @@ def enviar_correo(request):
         return Response({"mensaje": "Correo enviado con éxito"})
     except Exception as e:
         return Response({"error": str(e)}, status=500)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def obtener_perfil(request):
+    usuario = request.user
+    data = {
+        'id': usuario.id,
+        'nombre': usuario.first_name,
+        'apellido': usuario.last_name,
+        'email': usuario.email,
+        'username': usuario.username,
+    }
+    return Response(data)
