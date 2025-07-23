@@ -39,6 +39,12 @@ const Api = () => {
         return data
     }
 
+    const GetProduct = async(id:number) => {
+        const bd = await fetch(`${URL}productos/${id}`)
+        const data = await bd.json()
+        return data
+    }
+
     const GetPerfil = async(token:string) => {
         const bd = await fetch(`${URL}profile`,{
             method: 'GET',
@@ -50,11 +56,34 @@ const Api = () => {
         return data
     }
 
+    const ApiRegister = async(user:string, name: string, lastname: string, email:string,pass:string) => {
+        const bd = await fetch(`${URL}register`,{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                username: user ,
+                first_name: name ,
+                last_name: lastname ,
+                email: email,
+                password: pass ,
+            })
+        })
+        const data = await bd.json().then(data => {
+            if(data.message == 'Usuario creado Exitosamente'){
+                toast.success('Usuario Creado exitosamente')
+                navigate(Paths.Login)
+            }else{
+                toast.error('UPS, parece que hubo un error!')
+            }
+        })
+        return data
+    }
+
 
 
 
   return {
-    ApiLogin, ListProductos, GetPerfil
+    ApiLogin, ListProductos, GetPerfil, ApiRegister, GetProduct
   }
 }
 

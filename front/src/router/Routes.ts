@@ -5,8 +5,11 @@ export const Elements = {
     Home: lazy(()=> import('../pages/Home')),
     Nosotros: lazy(()=> import('../pages/Nosotros')),
     Products: lazy(()=> import('../pages/Products')),
+    Producto: lazy(()=> import('../pages/Producto')),
     Ubicanos: lazy(()=> import('../pages/Ubicanos')),
-    Login: lazy(()=> import('../pages/Login'))
+    Login: lazy(()=> import('../pages/Login')),
+    Register: lazy(()=> import('../pages/Register')),
+    Error404: lazy(()=> import('../pages/Error404')),
 }
 
 export const Paths = {
@@ -14,5 +17,7 @@ export const Paths = {
     Nosotros: '/Nosotros',
     Products: '/Products',
     Ubicanos: '/Ubicanos',
-    Login: '/Login'
+    Login: '/Login',
+    Register: '/Register',
+    Error404: '/Error'
 }
