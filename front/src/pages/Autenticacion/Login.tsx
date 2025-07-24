@@ -1,5 +1,5 @@
 
-import { useUser } from "../shared/contexts/UsuarioContext"
+import { useUser } from "../../shared/contexts/UsuarioContext"
 
 
 const Login = () => {

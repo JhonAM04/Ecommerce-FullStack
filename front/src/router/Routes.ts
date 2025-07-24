@@ -7,8 +7,8 @@ export const Elements = {
     Products: lazy(()=> import('../pages/Products')),
     Producto: lazy(()=> import('../pages/Producto')),
     Ubicanos: lazy(()=> import('../pages/Ubicanos')),
-    Login: lazy(()=> import('../pages/Login')),
-    Register: lazy(()=> import('../pages/Register')),
+    Login: lazy(()=> import('../pages/Autenticacion/Login')),
+    Register: lazy(()=> import('../pages/Autenticacion/Register')),
     Error404: lazy(()=> import('../pages/Error404')),
 }
 

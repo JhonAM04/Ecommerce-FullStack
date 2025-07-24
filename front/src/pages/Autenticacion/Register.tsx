@@ -1,4 +1,4 @@
-import Api from "../shared/hooks/Api"
+import Api from "../../shared/hooks/Api"
 
 
 const Register = () => {
