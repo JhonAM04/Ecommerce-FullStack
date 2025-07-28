@@ -15,7 +15,8 @@ const ConfirmacionCompra = () => {
         subtotal: item.cantidad * item.producto.precio
     }))
 
-    const CrearPedido = () => {
+    const CrearPedido = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         RegistrarPedido(tokken?.access, detalles)
     }
 
@@ -55,10 +56,10 @@ const ConfirmacionCompra = () => {
                 <h3>Metodo de pago:</h3>
                 <p>Todas las transacciones son seguras y estan encriptadas</p>
                 <div className="grid grid-cols-2 gap-2">
-                    <button className="border-2 rounded-[10px]">Tarjeta de Credito</button>
-                    <button className="border-2 rounded-[10px]">Tarjeta de Debito</button>
-                    <button className="border-2 rounded-[10px]">Yape/Plin</button>
-                    <button className="border-2 rounded-[10px]">Efectivo</button>
+                    <button className="border-1 rounded-[10px]">Tarjeta de Credito</button>
+                    <button className="border-1 rounded-[10px]">Tarjeta de Debito</button>
+                    <button className="border-1 rounded-[10px]">Yape/Plin</button>
+                    <button className="border-1 rounded-[10px]">Efectivo</button>
 
                 </div>
                 
@@ -67,7 +68,7 @@ const ConfirmacionCompra = () => {
 
         </div>
 
-        <div className="flex flex-col h-[fit-content] w-[500px] gap-2 border-2 p-5 rounded-[6px]" id='VistaPrevia'>
+        <div className="flex flex-col h-[fit-content] w-[500px] gap-2 border-2 border-[#886527] p-5 rounded-[6px]" id='VistaPrevia'>
                 {
                     Productos.map(p=>(
                         <div className="flex items-center justify-between w-full" key={p.producto.id}>
@@ -81,9 +82,18 @@ const ConfirmacionCompra = () => {
                     ))
                 }
 
-                <p>Subtotal: {total}</p>
-                <p>Envio:</p>
-                <p>Total: {total}</p>
+                <div className="flex justify-between w-full">
+                    <p>Subtotal:</p>
+                    <p>{total}</p>
+                </div>
+                <div className="flex justify-between w-full">
+                    <p>Envio:</p>
+                    <p>{total}</p>
+                </div>
+                <div className="flex justify-between w-full">
+                    <p className="font-bold text-2xl">Total:</p>
+                    <p className="font-bold text-2xl">{total}</p>
+                </div>
         </div>
 
     </div>

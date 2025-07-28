@@ -5,7 +5,7 @@ const BaseLayout = ({children}:{children:ReactElement}) => {
   return (
     <>
         <div>
-            <div className='relative h-16'>
+            <div >
               <Navbar />
             </div>
             <div className='flex flex-col justify-center items-center w-full gap-10'>

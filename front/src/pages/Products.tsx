@@ -2,25 +2,140 @@ import { useEffect, useState } from "react"
 import Api from "../shared/hooks/Api"
 import type { Productos } from "../declarations/apiVar"
 import CardsProducts from "../shared/components/CardsProducts"
-
+import banner from '../assets/banner productos.jpg'
+import itemHombres from '../assets/productos hombre.jpg'
+import itemMujeres from '../assets/productos mujer.jpg'
+import itemKids from '../assets/productos niños.jpg'
 
 const Products = () => {
-  const {ListProductos} = Api()
-  const [productos, setProductos] = useState<Array<Productos>>()
+  const { ListProductos } = Api()
+  const [productos, setProductos] = useState<Array<Productos>>([])
+  const [productosFiltrados, setProductosFiltrados] = useState<Array<Productos>>([])
 
-  const getInfo = async() => {
-    const data = await ListProductos()
-    setProductos(data)
-  }
-  useEffect(()=>{
+  const [filtroCategoria, setFiltroCategoria] = useState<string[]>([])
+  const [filtroTalla, setFiltroTalla] = useState<string[]>([])
+
+  useEffect(() => {
+    const getInfo = async () => {
+      const data = await ListProductos()
+      setProductos(data)
+      setProductosFiltrados(data)
+    }
     getInfo()
-  },[])
+  }, [])
+
+  
+  const handleCategoriaChange = (categoria: string) => {
+    setFiltroCategoria(prev =>
+      prev.includes(categoria)
+      ? prev.filter(c => c !== categoria)
+      : [...prev, categoria]
+    )
+  }
+  
+  const handleTallaChange = (talla: string) => {
+    setFiltroTalla(prev =>
+      prev.includes(talla)
+      ? prev.filter(t => t !== talla)
+      : [...prev, talla]
+    )
+  }
+
+  const filtrarProductos = () => {
+    let filtrados = [...productos]
+    
+    if (filtroCategoria.length > 0) {
+      filtrados = filtrados.filter(p => filtroCategoria.includes(p.categoria))
+    }
+    
+    if (filtroTalla.length > 0) {
+      filtrados = filtrados.filter(p => filtroTalla.includes(p.talla))
+    }
+    
+    setProductosFiltrados(filtrados)
+  }
+
+  useEffect(() => {
+    filtrarProductos()
+  }, [filtroCategoria, filtroTalla])
+  
   return (
-    <div className="flex justify-around flex-wrap gap-5 mt-5">
-      {productos?.map(producto => (
-        <CardsProducts producto={producto} key={producto.id} />
-      ))}
-    </div>
+    <>
+      <section className="w-full pt-16">
+        <img src={banner} />
+      </section>
+
+      <section>
+        <div className="flex gap-5">
+          <div className="flex flex-col items-center">
+            <img src={itemMujeres} className="size-[300px] rounded-[50%] border-1 object-center" />
+            <p>Mujer</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <img src={itemHombres} className="size-[300px] rounded-[50%] border-1" />
+            <p>Hombre</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <img src={itemKids} className="size-[300px] rounded-[50%] border-1" />
+            <p>Niños</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full pb-5">
+        <div className="flex justify-evenly gap-6">
+          {/* Filtros */}
+          <div className="w-[200px] h-[fit-content] border-1 p-2">
+            <p className="font-bold mb-2">Filtros:</p>
+
+            <div className="mb-4">
+              <p className="font-semibold">Categoría:</p>
+              {["polos", "pantalones", "casacas", "camisas"].map(cat => (
+                <div key={cat}>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={filtroCategoria.includes(cat)}
+                      onChange={() => handleCategoriaChange(cat)}
+                    />
+                    {cat}
+                  </label>
+                </div>
+              ))}
+            </div>
+
+            <div>
+              <p className="font-semibold">Tallas:</p>
+              {["S", "M", "L", "XL"].map(talla => (
+                <div key={talla}>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={filtroTalla.includes(talla)}
+                      onChange={() => handleTallaChange(talla)}
+                    />
+                    {talla}
+                  </label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Productos */}
+          <div className="flex">
+            {productosFiltrados.length === 0 ? (
+              <p>No se encontraron productos con los filtros seleccionados.</p>
+            ) : (
+              <div className="grid grid-cols-3 gap-4">
+                {productosFiltrados.map(producto => (
+                  <CardsProducts producto={producto} key={producto.id} />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
 
