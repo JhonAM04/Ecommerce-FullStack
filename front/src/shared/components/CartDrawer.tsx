@@ -4,11 +4,15 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle, TransitionChild } fro
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { TiShoppingCart } from "react-icons/ti"
 import { CarritoStore } from '../store/CarritoStore'
-import CartItem from './CartItem'
+import CartItems from './CartItems'
+import { useNavigate } from 'react-router-dom'
+import { Paths } from '../../router/Routes'
+
 
 export default function Example() {
   const [open, setOpen] = useState(false)
   const {Productos, vaciar} = CarritoStore()
+  const Navigate = useNavigate()
 
   return (
     <div>
@@ -49,17 +53,30 @@ export default function Example() {
                     <DialogTitle className="text-base font-semibold text-gray-900">Carrito</DialogTitle>
                   </div>
                   <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                    
+                    <div className='flex flex-col gap-3'>
+
                     {
                       Productos.map(item => (
-                        <CartItem producto={item.producto} />
+                        <div key={item.producto.id}>
+                          <CartItems producto={item} />
+                          <hr/>
+                        </div>
+                        
                       ))
                     }
 
+                    </div>
+
 
                   </div>
-                  <div className="px-4 sm:px-6">
+                  <div className="px-4 sm:px-6 flex justify-between">
                     <button onClick={()=>{vaciar()}} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  w-[100px] h-[50px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Vaciar Carrito</button>
+                    {
+                      Productos.length >= 1 ?
+                       <button onClick={()=> Navigate(Paths.CarritoPage)} className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  w-[100px] h-[50px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continuar Compra</button> 
+                        : 
+                       <></>
+                    }
                   </div>
                 </div>
               </DialogPanel>

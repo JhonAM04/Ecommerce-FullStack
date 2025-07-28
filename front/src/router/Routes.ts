@@ -1,6 +1,5 @@
 import { lazy } from "react"
 
-
 export const Elements = {
     Home: lazy(()=> import('../pages/Home')),
     Nosotros: lazy(()=> import('../pages/Nosotros')),
@@ -9,6 +8,8 @@ export const Elements = {
     Ubicanos: lazy(()=> import('../pages/Ubicanos')),
     Login: lazy(()=> import('../pages/Autenticacion/Login')),
     Register: lazy(()=> import('../pages/Autenticacion/Register')),
+    CarritoPage: lazy(()=> import('../pages/CarritoPage')) ,
+    ConfirmacionCompra: lazy(()=> import('../pages/ConfirmacionCompra')) ,
     Error404: lazy(()=> import('../pages/Error404')),
 }
 
@@ -19,5 +20,7 @@ export const Paths = {
     Ubicanos: '/Ubicanos',
     Login: '/Login',
     Register: '/Register',
+    CarritoPage: '/Carrito',
+    ConfirmacionCompra: '/Pedido',
     Error404: '/Error'
 }

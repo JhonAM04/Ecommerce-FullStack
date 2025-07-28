@@ -11,6 +11,8 @@ const AppRoutes = () => {
         <Route element={<BaseOutlet/>}>
             <Route path={Paths.Home} element={<Elements.Home/>} />
             <Route path={Paths.Nosotros} element={<Elements.Nosotros/>} />
+            <Route path={Paths.CarritoPage} element={<Elements.CarritoPage/>} />
+            <Route path={Paths.ConfirmacionCompra} element={<Elements.ConfirmacionCompra/>} />
 
             <Route path={Paths.Products}>
               <Route index element={<Elements.Products/>} />

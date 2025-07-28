@@ -79,11 +79,29 @@ const Api = () => {
         return data
     }
 
+    const RegistrarPedido = async(token:string, detalles:any[]) => {
+        const bd = await fetch(`${URL}pedidosUsuario`,{
+            method: 'POST',
+            headers: {'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({detalles})
+        })
+        const data = await bd.json().then(data => {
+            if(data.message == 'Pedido Creado Exitosamente'){
+                toast.success('Compra realizada con exito')
+            }else{
+                toast.error('Hubo un error')
+            }
+        })
+        return data
+    }
+
 
 
 
   return {
-    ApiLogin, ListProductos, GetPerfil, ApiRegister, GetProduct
+    ApiLogin, ListProductos, GetPerfil, ApiRegister, GetProduct, RegistrarPedido
   }
 }
 
