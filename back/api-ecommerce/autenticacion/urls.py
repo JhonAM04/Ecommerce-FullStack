@@ -9,4 +9,5 @@ urlpatterns = [
     path('ecommerce/register', views.registro_view),
     path('ecommerce/forgottenPassword', views.enviar_correo),
     path('ecommerce/profile', views.obtener_perfil),
+    path('ecommerce/forgottenPassword/<str:token>', views.Cambio_Contrasena),
 ]
