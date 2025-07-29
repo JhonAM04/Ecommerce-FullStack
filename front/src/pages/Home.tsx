@@ -5,16 +5,19 @@ import video from '../assets/home.mov'
 import Hombres from '../assets/hombre.jpg'
 import Mujeres from '../assets/mujeres.jpg'
 import kids from '../assets/niños.jpg'
+import { useNavigate } from 'react-router-dom'
+import { Paths } from '../router/Routes'
 
 
 const Home = () => {
+  const Navigate = useNavigate()
   return (
     <>
       <section className='w-full relative '>
         <div className='flex flex-col items-start justify-center h-full absolute px-[50px] pt-16 gap-4'>
           <h1 className='font-bold text-7xl max-w-[100px]'>Eclat Boutique</h1>
           <p className='font-bold max-w-[240px]'>Descubre moda unica para cada momento de tu vida</p>
-          <button className='bg-black text-white p-3'>COMPRAR AHORA</button>
+          <button onClick={()=> Navigate(Paths.Products)} className='bg-black text-white p-3 z-10'>COMPRAR AHORA</button>
         </div>
         <video muted autoPlay loop className="w-full max-h-200 object-cover z-0">
           <source src={video} />

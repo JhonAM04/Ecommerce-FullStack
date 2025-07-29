@@ -88,12 +88,23 @@ const Api = () => {
             body: JSON.stringify({detalles})
         })
         const data = await bd.json().then(data => {
-            if(data.message == 'Pedido Creado Exitosamente'){
-                toast.success('Compra realizada con exito')
+            if(data.message == 'Pedido creado Exitosamente'){
+                return true
             }else{
-                toast.error('Hubo un error')
+                return false
             }
         })
+        return data
+    }
+
+    const ListarPedidosUsuario = async(token:string) => {
+        const bd = await fetch(`${URL}pedidosUsuario`,{
+            method: 'GET',
+            headers: {'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        const data = await bd.json()
         return data
     }
 
@@ -101,7 +112,7 @@ const Api = () => {
 
 
   return {
-    ApiLogin, ListProductos, GetPerfil, ApiRegister, GetProduct, RegistrarPedido
+    ApiLogin, ListProductos, GetPerfil, ApiRegister, GetProduct, RegistrarPedido, ListarPedidosUsuario
   }
 }
 

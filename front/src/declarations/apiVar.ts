@@ -17,3 +17,20 @@ export type Perfil = {
     email: string
     username: string
 }
+
+type detallesPedido = {
+    producto: number
+    cantidad: number
+    precioUnitario: number
+    subtotal: number
+}
+
+export type PedidosUsuario = {
+    id: number
+    usuario: number
+    fecha: Date
+    total: number
+    detalles: Array<detallesPedido>
+}
+    
+    

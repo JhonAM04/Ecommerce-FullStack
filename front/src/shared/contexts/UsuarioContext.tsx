@@ -58,7 +58,6 @@ export const UsuarioProvider = ({children}:{children:ReactNode}) => {
     const LogOut = () => {
         localStorage.removeItem('session')
         setPerfil(null)
-        navigate(Paths.Login)
         toast.success('Cerraste sesion con exito')
     }
 

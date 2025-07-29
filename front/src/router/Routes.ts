@@ -10,6 +10,7 @@ export const Elements = {
     Register: lazy(()=> import('../pages/Autenticacion/Register')),
     CarritoPage: lazy(()=> import('../pages/CarritoPage')) ,
     ConfirmacionCompra: lazy(()=> import('../pages/ConfirmacionCompra')) ,
+    PedidosUsuario: lazy(()=> import('../pages/PedidosUsuario')),
     Error404: lazy(()=> import('../pages/Error404')),
 }
 
@@ -22,5 +23,6 @@ export const Paths = {
     Register: '/Register',
     CarritoPage: '/Carrito',
     ConfirmacionCompra: '/Pedido',
+    PedidosUsuario: '/MisPedidos',
     Error404: '/Error'
 }

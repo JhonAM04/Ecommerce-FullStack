@@ -2,8 +2,11 @@ import banner from '../assets/nosotros.jpg'
 import item1 from '../assets/Trabajo.png'
 import mision from '../assets/mision.jpg'
 import vision from '../assets/vision.jpg'
+import { Paths } from '../router/Routes'
+import { useNavigate } from 'react-router-dom'
 
 const Nosotros = () => {
+  const Navigate = useNavigate()
   return (
     <>
       <section className="w-full">
@@ -41,7 +44,7 @@ const Nosotros = () => {
       <section className="w-full pb-5">
         <div className='flex flex-col justify-center items-center gap-2'>
           <p className='text-3xl max-w-[970px] text-center'>"Descubre nuestras ultimas colecciones y encuentra el look perfecto para ti y tu familia"</p>
-          <button className='bg-[#F8C264] p-2 font-bold rounded-[10px]'>VER PRODUCTOS</button>
+          <button onClick={()=> Navigate(Paths.Products)} className='bg-[#F8C264] p-2 font-bold rounded-[10px]'>VER PRODUCTOS</button>
         </div>
 
       </section>

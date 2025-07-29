@@ -1,23 +1,40 @@
+import { useState } from "react"
 import Api from "../shared/hooks/Api"
 import { CarritoStore } from "../shared/store/CarritoStore"
+import ModalCompra from "../shared/components/ModalCompra"
+
 
 const ConfirmacionCompra = () => {
-    const {Productos} = CarritoStore()
+    const {Productos, Detalles} = CarritoStore()
     const {RegistrarPedido} = Api()
     const tokken = JSON.parse(localStorage.getItem('session')!)
+    const [modalOpen, setModalOpen] = useState(false)
+    const [datosCliente, setDatosCliente] = useState({
+        nombre: '',
+        apellido: '',
+        direccion: '',
+        documento: '',
+        telefono: '',
+        ciudad: '',
+        distrito: '',
+        entrega: ''
+        })
+
     const total = Productos.reduce((acc, p) => {
         return acc + (p.cantidad * p.producto.precio)
     }, 0)
-    const detalles:any[] = Productos.map(item => ({
-        producto: item.producto.id,
-        cantidad: item.cantidad,
-        precioUnitario: item.producto.precio,
-        subtotal: item.cantidad * item.producto.precio
-    }))
 
-    const CrearPedido = (e:React.FormEvent<HTMLFormElement>) => {
+    const CrearPedido = async(e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        RegistrarPedido(tokken?.access, detalles)
+        const form = e.currentTarget
+
+        const data = new FormData(form)
+        const {nombre, apellido, direccion, documento, telefono, ciudad, distrito, entrega} = Object.fromEntries(data.entries()) as { [k:string]:string }
+        const exito = await RegistrarPedido(tokken?.access, Detalles)
+        if(exito){
+            setDatosCliente({nombre,apellido,direccion,documento,telefono,ciudad,distrito,entrega})
+            setModalOpen(true)
+        }
     }
 
   return (
@@ -25,35 +42,35 @@ const ConfirmacionCompra = () => {
         
         <div className="flex flex-col w-[500px]" id="Form">
             <form className="flex flex-col gap-4" onSubmit={CrearPedido} >
-                <h3>Modalidad de entrega:</h3>
+                <h3 className="font-bold">Modalidad de entrega:</h3>
                 <div className="flex">
-                    <input name="entrega" type="radio" required/>
+                    <input name="entrega" type="radio" value='recogo' required/>
                     <label>Recogo en tienda</label>
                 </div>
                 <div className="flex">
-                    <input name="entrega" type="radio" required/>
+                    <input name="entrega" type="radio" value='domicilio' required/>
                     <label>Envio a domicilio</label>
                 </div>
                 <div className="flex justify-between">
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" placeholder="Nombre" required />
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" placeholder="Apellido" required/>
+                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" name="nombre" placeholder="Nombre" required />
+                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" name="apellido" placeholder="Apellido" required/>
                 </div>
 
-                <input className="border rounded-[8px] h-[40px]" type="text" placeholder="Direccion de domicilio" required />
+                <input className="border rounded-[8px] h-[40px]" type="text" name="direccion" placeholder="Direccion de domicilio" required />
 
                 <div className="flex justify-between">
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" placeholder="DNI,CE O RUC" required />
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" placeholder="Telefono" required />
+                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="number" name="documento" placeholder="DNI,CE O RUC" required />
+                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="number" name="telefono" placeholder="Telefono" required />
                 </div>
                 
-                <input className="border rounded-[8px] h-[40px]" type="text" placeholder="Referencias" required />
+                <input className="border rounded-[8px] h-[40px]" type="text" name="referencias" placeholder="Referencias" required />
 
                 <div className="flex justify-between">
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" placeholder="Ciudad" required />
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" placeholder="Distrito" required />
+                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" name="ciudad" placeholder="Ciudad" required />
+                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" name="distrito" placeholder="Distrito" required />
                 </div>
 
-                <h3>Metodo de pago:</h3>
+                <h3 className="font-bold">Metodo de pago:</h3>
                 <p>Todas las transacciones son seguras y estan encriptadas</p>
                 <div className="grid grid-cols-2 gap-2">
                     <button className="border-1 rounded-[10px]">Tarjeta de Credito</button>
@@ -63,8 +80,22 @@ const ConfirmacionCompra = () => {
 
                 </div>
                 
-                <button type="submit">Realizar Pedido</button>
+                <button type="submit" className="border-1 rounded-[10px] bg-[#FFD8A7]">Realizar Pedido</button>
             </form>
+
+            <ModalCompra
+            open={modalOpen}
+            onClose={() => setModalOpen(false)}
+            products={Productos}
+            nombre={datosCliente.nombre}
+            apellido={datosCliente.apellido}
+            ciudad={datosCliente.ciudad}
+            direccion={datosCliente.direccion}
+            distrito={datosCliente.distrito}
+            documento={datosCliente.documento}
+            modalidad={datosCliente.entrega}
+            telefono={datosCliente.telefono}
+            />
 
         </div>
 
@@ -88,7 +119,7 @@ const ConfirmacionCompra = () => {
                 </div>
                 <div className="flex justify-between w-full">
                     <p>Envio:</p>
-                    <p>{total}</p>
+                    <p>Gratis</p>
                 </div>
                 <div className="flex justify-between w-full">
                     <p className="font-bold text-2xl">Total:</p>

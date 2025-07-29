@@ -8,9 +8,9 @@ const CardsProducts = ({producto}:{producto:Productos}) => {
   return (
     
         <div className=" flex flex-col items-center justify-around max-w-[300px] w-[300px] bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 p-[5px]">
-            <a href="#">
+            <Link to={`Product/${producto.id}`}>
                 <img className="rounded-t-lg size-[150px]" src={producto.imagen} />
-            </a>
+            </Link>
             <div>
                 <Link to={`Product/${producto.id}`}>
                     <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{producto.nombre}</h5>

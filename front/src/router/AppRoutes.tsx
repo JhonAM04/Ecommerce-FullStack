@@ -16,6 +16,7 @@ const AppRoutes = () => {
             <Route path={Paths.Home} element={<Elements.Home/>} />
             <Route path={Paths.Nosotros} element={<Elements.Nosotros/>} />
             <Route path={Paths.CarritoPage} element={<Elements.CarritoPage/>} />
+            <Route path={Paths.PedidosUsuario} element={<Elements.PedidosUsuario/>} />
             
         <Route element={<CompraProtegida/>}>
             <Route path={Paths.ConfirmacionCompra} element={<Elements.ConfirmacionCompra/>} />
