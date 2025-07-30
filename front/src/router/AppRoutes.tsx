@@ -3,6 +3,7 @@ import { Elements, Paths } from "./Routes"
 import BaseOutlet from "./Outlets/BaseOutlet"
 import AuthOutlet from "./Outlets/AuthOutlet"
 import CompraProtegida from "./Outlets/CompraProtegida"
+import UserOutlet from "./Outlets/UserOutlet"
 
 const AppRoutes = () => {
   return (
@@ -10,13 +11,20 @@ const AppRoutes = () => {
       <Route element={<AuthOutlet/>}>
         <Route path={Paths.Login} element={<Elements.Login/>} />
         <Route path={Paths.Register} element={<Elements.Register/>} />
+        <Route path={Paths.RecuperacionPass}>
+          <Route index element={<Elements.RecuperacionPass/>} />
+          <Route path=":token" element={<Elements.CambioPass/>} />
+        </Route>
       </Route>
 
         <Route element={<BaseOutlet/>}>
             <Route path={Paths.Home} element={<Elements.Home/>} />
             <Route path={Paths.Nosotros} element={<Elements.Nosotros/>} />
             <Route path={Paths.CarritoPage} element={<Elements.CarritoPage/>} />
-            <Route path={Paths.PedidosUsuario} element={<Elements.PedidosUsuario/>} />
+
+            <Route element={<UserOutlet/>}>
+              <Route path={Paths.PedidosUsuario} element={<Elements.PedidosUsuario/>} />
+            </Route>
             
         <Route element={<CompraProtegida/>}>
             <Route path={Paths.ConfirmacionCompra} element={<Elements.ConfirmacionCompra/>} />

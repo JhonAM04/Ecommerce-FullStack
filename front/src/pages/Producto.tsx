@@ -31,7 +31,7 @@ const Producto = () => {
   return (
     <>
        <section className="w-full pt-16">
-        <div className="flex justify-evenly items-center">
+        <div className="md:flex max-md:px-[20px] max-md:pb-[20px] justify-evenly items-center">
             <img src={producto?.imagen} className="w-[500px]" />
             <div className="flex flex-col gap-2">
                 <h3 className="font-bold text-xl text-gray-300">ECLAT BOUTIQUE</h3>

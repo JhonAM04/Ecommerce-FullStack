@@ -91,7 +91,7 @@ export const CarritoStore = create<Cart>((set) => ({
       }
     }),
 
-  vaciar: () => ({
+  vaciar: () => set({
     Productos: [],
     Detalles: []
   })

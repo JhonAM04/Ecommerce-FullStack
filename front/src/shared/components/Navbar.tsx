@@ -32,7 +32,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <div className="absolute inset-y-0 flex items-center pr-5 sm:static sm:inset-auto sm:ml-6">
+          <div className="inset-y-0 flex items-center pr-5 sm:static sm:inset-auto sm:ml-6">
             <CartDrawer/>
             {/* Profile dropdown */}
             {
@@ -65,21 +65,26 @@ const Navbar = () => {
                   </p>
                 </MenuItem>
               </MenuItems>
-            </Menu>: <>
-              <button type="button" onClick={()=>{Navigate(Paths.Login)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Login</button>
-              <button type="button" onClick={()=>{Navigate(Paths.Register)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Registrarse</button>
-            </> 
+            </Menu>: 
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="hidden sm:ml-6 sm:block">
+                  <button type="button" onClick={()=>{Navigate(Paths.Login)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Login</button>
+                  <button type="button" onClick={()=>{Navigate(Paths.Register)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Registrarse</button>
+              </div>
+             </div>
             }
           </div>
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
-        <div className="space-y-1 px-2 pt-2 pb-3">
+      <DisclosurePanel className="sm:hidden bg-blue-950">
+        <div className="flex flex-col space-y-1 px-2 pt-2 pb-3">
                 <Link to={Paths.Home} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Home</Link>
                 <Link to={Paths.Nosotros} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Nosotros</Link>
                 <Link to={Paths.Products} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Productos</Link>
                 <Link to={Paths.Ubicanos} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Ubicanos</Link>
+                <button type="button" onClick={()=>{Navigate(Paths.Login)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Login</button>
+                <button type="button" onClick={()=>{Navigate(Paths.Register)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Registrarse</button>
         </div>
       </DisclosurePanel>
     </Disclosure>

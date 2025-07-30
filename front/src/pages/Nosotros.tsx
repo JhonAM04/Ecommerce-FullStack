@@ -10,32 +10,32 @@ const Nosotros = () => {
   return (
     <>
       <section className="w-full">
-        <div className='absolute flex justify-center items-center w-full h-[60%] z-10'>
-          <h1 className='font-extrabold text-5xl max-w-[500px] text-center'>"Conectando moda y personas"</h1>
+        <div className='absolute flex justify-center items-center w-full md:h-[60%] top-[100px] z-10'>
+          <h1 className='font-extrabold md:text-5xl text-3xl max-w-[500px] text-center'>"Conectando moda y personas"</h1>
         </div>
-        <img src={banner} className='contain-content h-[700px] w-full' />
+        <img src={banner} className='contain-content md:h-[700px] w-full' />
       </section>
 
       <section className="w-full">
-        <div className='flex justify-around items-center'>
-          <p className='w-[450px]'>
+        <div className='md:flex px-[50px] justify-around items-center'>
+          <p className='md:w-[450px] md:text-start text-center'>
             Somos una tienda de ropa dedicada a ofrecer moda de calidad para mujeres, hombres y niños. Creemos que el estilo es una forma de expresion y trabajamos día a día
             para traerte prendas que se adapten a tu personalidad y a cada momento de tu vida.
           </p>
-          <img src={item1} className='max-w-[600px]'/>
+          <img src={item1} className='md:max-w-[600px]'/>
         </div>
       </section>
 
       <section className="w-full bg-[#FFD8A7] py-[30px]">
-        <div className='flex justify-evenly items-center'>
+        <div className='md:flex px-[50px] justify-evenly items-center md:text-start text-center'>
           <div className='flex flex-col'>
             <h3 className='font-bold text-2xl'>Mision:</h3>
-            <p className='w-[200px]'>Brindar ropa moderna, comoda y de calidad que inspire confianza en nuestros clientes y cubra las necesidades de toda la familia</p>
+            <p className='md:w-[200px]'>Brindar ropa moderna, comoda y de calidad que inspire confianza en nuestros clientes y cubra las necesidades de toda la familia</p>
           </div>
           <img src={mision} className='size-[350px]' />
           <div className='flex flex-col'>
             <h3 className='font-bold text-2xl'>Vision:</h3>
-            <p className='w-[200px]'>Convertirnos en la tienda de moda preferida en el país, reconocida por su compromiso con el estilo, la innovacion y la satisfaccion de cada cliente</p>
+            <p className='md:w-[200px]'>Convertirnos en la tienda de moda preferida en el país, reconocida por su compromiso con el estilo, la innovacion y la satisfaccion de cada cliente</p>
           </div>
           <img src={vision} className='size-[350px]' />
         </div>

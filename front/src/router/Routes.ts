@@ -8,9 +8,11 @@ export const Elements = {
     Ubicanos: lazy(()=> import('../pages/Ubicanos')),
     Login: lazy(()=> import('../pages/Autenticacion/Login')),
     Register: lazy(()=> import('../pages/Autenticacion/Register')),
-    CarritoPage: lazy(()=> import('../pages/CarritoPage')) ,
-    ConfirmacionCompra: lazy(()=> import('../pages/ConfirmacionCompra')) ,
+    CarritoPage: lazy(()=> import('../pages/Compras/CarritoPage')) ,
+    ConfirmacionCompra: lazy(()=> import('../pages/Compras/ConfirmacionCompra')) ,
     PedidosUsuario: lazy(()=> import('../pages/PedidosUsuario')),
+    RecuperacionPass:  lazy(()=> import('../pages/Autenticacion/RecuperacionPass')) ,
+    CambioPass: lazy(()=> import('../pages/Autenticacion/CambioPass')) ,
     Error404: lazy(()=> import('../pages/Error404')),
 }
 
@@ -21,6 +23,7 @@ export const Paths = {
     Ubicanos: '/Ubicanos',
     Login: '/Login',
     Register: '/Register',
+    RecuperacionPass: '/RecuperarContraseña',
     CarritoPage: '/Carrito',
     ConfirmacionCompra: '/Pedido',
     PedidosUsuario: '/MisPedidos',

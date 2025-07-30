@@ -66,24 +66,24 @@ const Products = () => {
       </section>
 
       <section>
-        <div className="flex gap-5">
+        <div className="flex gap-5 max-md:px-[30px]">
           <div className="flex flex-col items-center">
-            <img src={itemMujeres} className="size-[300px] rounded-[50%] border-1 object-center" />
+            <img src={itemMujeres} className="md:size-[300px] size-[200px] rounded-[50%] border-1 object-center" />
             <p>Mujer</p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={itemHombres} className="size-[300px] rounded-[50%] border-1" />
+            <img src={itemHombres} className="md:size-[300px] size-[200px] rounded-[50%] border-1" />
             <p>Hombre</p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={itemKids} className="size-[300px] rounded-[50%] border-1" />
+            <img src={itemKids} className="md:size-[300px] size-[200px] rounded-[50%] border-1" />
             <p>Niños</p>
           </div>
         </div>
       </section>
 
       <section className="w-full pb-5">
-        <div className="flex justify-evenly gap-6">
+        <div className="md:flex max-md:flex max-md:flex-col md:justify-evenly justify-center max-md:items-center gap-6">
           {/* Filtros */}
           <div className="w-[200px] h-[fit-content] border-1 p-2">
             <p className="font-bold mb-2">Filtros:</p>
@@ -126,7 +126,7 @@ const Products = () => {
             {productosFiltrados.length === 0 ? (
               <p>No se encontraron productos con los filtros seleccionados.</p>
             ) : (
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-3 gap-4">
                 {productosFiltrados.map(producto => (
                   <CardsProducts producto={producto} key={producto.id} />
                 ))}

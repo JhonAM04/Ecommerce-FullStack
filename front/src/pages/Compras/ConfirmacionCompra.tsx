@@ -1,7 +1,7 @@
 import { useState } from "react"
-import Api from "../shared/hooks/Api"
-import { CarritoStore } from "../shared/store/CarritoStore"
-import ModalCompra from "../shared/components/ModalCompra"
+import Api from "../../shared/hooks/Api"
+import { CarritoStore } from "../../shared/store/CarritoStore"
+import ModalCompra from "../../shared/components/ModalCompra"
 
 
 const ConfirmacionCompra = () => {
@@ -38,9 +38,9 @@ const ConfirmacionCompra = () => {
     }
 
   return (
-    <div className="flex justify-around mt-[100px] w-full h-[85vh]">
+    <div className="md:flex max-md:px-[10px] justify-around mt-[100px] w-full h-[85vh]">
         
-        <div className="flex flex-col w-[500px]" id="Form">
+        <div className="flex flex-col md:w-[500px]" id="Form">
             <form className="flex flex-col gap-4" onSubmit={CrearPedido} >
                 <h3 className="font-bold">Modalidad de entrega:</h3>
                 <div className="flex">
@@ -51,23 +51,23 @@ const ConfirmacionCompra = () => {
                     <input name="entrega" type="radio" value='domicilio' required/>
                     <label>Envio a domicilio</label>
                 </div>
-                <div className="flex justify-between">
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" name="nombre" placeholder="Nombre" required />
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" name="apellido" placeholder="Apellido" required/>
+                <div className="md:flex max-md:flex max-md:flex-col max-md:gap-4 justify-between">
+                    <input className="border rounded-[8px] h-[40px] md:w-[230px] max-md:w-full" type="text" name="nombre" placeholder="Nombre" required />
+                    <input className="border rounded-[8px] h-[40px] md:w-[230px] max-md:w-full" type="text" name="apellido" placeholder="Apellido" required/>
                 </div>
 
                 <input className="border rounded-[8px] h-[40px]" type="text" name="direccion" placeholder="Direccion de domicilio" required />
 
-                <div className="flex justify-between">
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="number" name="documento" placeholder="DNI,CE O RUC" required />
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="number" name="telefono" placeholder="Telefono" required />
+                <div className="md:flex max-md:flex max-md:flex-col max-md:gap-4 justify-between">
+                    <input className="border rounded-[8px] h-[40px] md:w-[230px] max-md:w-full" type="number" name="documento" placeholder="DNI,CE O RUC" required />
+                    <input className="border rounded-[8px] h-[40px] md:w-[230px] max-md:w-full" type="number" name="telefono" placeholder="Telefono" required />
                 </div>
                 
                 <input className="border rounded-[8px] h-[40px]" type="text" name="referencias" placeholder="Referencias" required />
 
-                <div className="flex justify-between">
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" name="ciudad" placeholder="Ciudad" required />
-                    <input className="border rounded-[8px] h-[40px] w-[230px]" type="text" name="distrito" placeholder="Distrito" required />
+                <div className="md:flex max-md:flex max-md:flex-col max-md:gap-4 justify-between">
+                    <input className="border rounded-[8px] h-[40px] md:w-[230px] max-md:w-full" type="text" name="ciudad" placeholder="Ciudad" required />
+                    <input className="border rounded-[8px] h-[40px] md:w-[230px] max-md:w-full" type="text" name="distrito" placeholder="Distrito" required />
                 </div>
 
                 <h3 className="font-bold">Metodo de pago:</h3>
@@ -80,7 +80,7 @@ const ConfirmacionCompra = () => {
 
                 </div>
                 
-                <button type="submit" className="border-1 rounded-[10px] bg-[#FFD8A7]">Realizar Pedido</button>
+                <button type="submit" className="border-1 rounded-[10px] bg-[#FFD8A7] max-md:mb-[10px]">Realizar Pedido</button>
             </form>
 
             <ModalCompra
@@ -99,11 +99,11 @@ const ConfirmacionCompra = () => {
 
         </div>
 
-        <div className="flex flex-col h-[fit-content] w-[500px] gap-2 border-2 border-[#886527] p-5 rounded-[6px]" id='VistaPrevia'>
+        <div className="flex flex-col h-[fit-content] md:w-[500px] gap-2 border-2 border-[#886527] p-5 rounded-[6px]" id='VistaPrevia'>
                 {
                     Productos.map(p=>(
                         <div className="flex items-center justify-between w-full" key={p.producto.id}>
-                            <img src={p.producto.imagen} />
+                            <img src={p.producto.imagen} className="size-[150px]" />
                             <div className="flex flex-col"> 
                             <p className="max-w-[250px]">{p.producto.nombre}</p>
                             <p>X{p.cantidad}</p>

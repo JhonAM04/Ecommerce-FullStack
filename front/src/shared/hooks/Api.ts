@@ -108,11 +108,47 @@ const Api = () => {
         return data
     }
 
+    const SolicitudCambioPass = async(correo:string) => {
+        const bd = await fetch(`${URL}forgottenPassword`,{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                correo: correo
+            })
+        })
+        const data = await bd.json().then(data => {
+            if(data.mensaje == 'Correo enviado con éxito'){
+                toast.success('La recuperacion de contraseña fue enviado al correo brindado')
+            }else{
+                toast.error('El correo brindado no existe')
+            }
+        })
+        return data
+    }
+
+    const CambioPassword = async(token:string, password:string) => {
+        const bd = await fetch(`${URL}forgottenPassword/${token}`,{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                password: password
+            })
+        })
+        const data = await bd.json().then(data =>{
+            if(data.message == 'Contraseña restablecida con exito'){
+                toast.success('Contraseña restablecida con exito')
+            }else{
+                toast.error('Hubo un error al restablecer la contraseña')
+            }
+        })
+        return data
+    }
+
 
 
 
   return {
-    ApiLogin, ListProductos, GetPerfil, ApiRegister, GetProduct, RegistrarPedido, ListarPedidosUsuario
+    ApiLogin, ListProductos, GetPerfil, ApiRegister, GetProduct, RegistrarPedido, ListarPedidosUsuario, SolicitudCambioPass, CambioPassword
   }
 }
 

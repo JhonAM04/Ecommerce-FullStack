@@ -70,7 +70,7 @@ export default function Example() {
 
                   </div>
                   <div className="px-4 sm:px-6 flex justify-between">
-                    <button onClick={()=>{vaciar()}} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  w-[100px] h-[50px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Vaciar Carrito</button>
+                    <button onClick={()=>vaciar()} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  w-[100px] h-[50px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Vaciar Carrito</button>
                     {
                       Productos.length >= 1 ?
                        <button onClick={()=> {Navigate(Paths.CarritoPage); setOpen(false)}} className="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  w-[100px] h-[50px] text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continuar Compra</button> 

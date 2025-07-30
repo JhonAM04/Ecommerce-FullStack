@@ -14,10 +14,10 @@ const Home = () => {
   return (
     <>
       <section className='w-full relative '>
-        <div className='flex flex-col items-start justify-center h-full absolute px-[50px] pt-16 gap-4'>
-          <h1 className='font-bold text-7xl max-w-[100px]'>Eclat Boutique</h1>
+        <div className='flex flex-col items-start justify-center h-full absolute px-[50px] md:pt-16 pt-3 gap-4'>
+          <h1 className='font-bold md:text-7xl text-2xl max-w-[100px]'>Eclat Boutique</h1>
           <p className='font-bold max-w-[240px]'>Descubre moda unica para cada momento de tu vida</p>
-          <button onClick={()=> Navigate(Paths.Products)} className='bg-black text-white p-3 z-10'>COMPRAR AHORA</button>
+          <button onClick={()=> Navigate(Paths.Products)} className='bg-black text-white md:p-3 p-1 z-10'>COMPRAR AHORA</button>
         </div>
         <video muted autoPlay loop className="w-full max-h-200 object-cover z-0">
           <source src={video} />
@@ -25,17 +25,17 @@ const Home = () => {
       </section>
 
       <section className='pb-5'>
-        <div className='flex justify-around items-center gap-4 px-[50px]'>
+        <div className='md:flex justify-around items-center gap-4 px-[50px]'>
           <div className='flex flex-col items-start gap-2'>
             <h3 className='font-bold text-2xl max-w-[220px] text-[#886527]'>TENDENCIAS QUE ARRASAN</h3>
             <p className='max-w-[300px]'>Explora nuestra seleccion mas popular: ropa pensada para toda la familia, con diseños que marcan tendencia en cada temporada</p>
-            <button className='bg-[#F8C264] p-2 font-bold'>IR A LA TIENDA</button>
+            <button className='bg-[#F8C264] p-2 font-bold max-md:mb-[20px]'>IR A LA TIENDA</button>
           </div>
-          <div>
+          <div className='max-md:mb-[20px]'>
             <p className='absolute p-2'>HOMBRES</p>
             <img className='size-[350px]' src={Hombres}/>
           </div>
-          <div>
+          <div className='max-md:mb-[20px]'>
             <p className='absolute p-2'>MUJERES</p>
             <img className='size-[350px]' src={Mujeres}/>
           </div>
