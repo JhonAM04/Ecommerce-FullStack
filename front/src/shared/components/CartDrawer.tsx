@@ -48,7 +48,7 @@ export default function Example() {
                     </button>
                   </div>
                 </TransitionChild>
-                <div className="flex h-[95vh] mt-12 flex-col overflow-y-auto bg-white py-6 shadow-xl">
+                <div className="flex md:h-[95vh] max-md:h-[90vh] mt-12 flex-col overflow-y-auto bg-white py-6 shadow-xl">
                   <div className="px-4 sm:px-6">
                     <DialogTitle className="text-base font-semibold text-gray-900">Carrito</DialogTitle>
                   </div>
