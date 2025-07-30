@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 const Api = () => {
 
-    const URL = 'http://127.0.0.1:8000/api/ecommerce/'
+    const URL = 'https://ecommerce-fullstack-wfxr.onrender.com/api/ecommerce/'
     const navigate = useNavigate()
 
     const ApiLogin = async(user:string, pass:string) => {

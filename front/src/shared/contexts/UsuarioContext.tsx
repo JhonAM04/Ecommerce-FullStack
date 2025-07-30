@@ -16,7 +16,7 @@ export const UsuarioContext = createContext<UsuarioContexto | undefined>(undefin
 
 export const UsuarioProvider = ({children}:{children:ReactNode}) => {
 
-    const URL = 'http://127.0.0.1:8000/api/ecommerce/'
+    const URL = 'https://ecommerce-fullstack-wfxr.onrender.com/api/ecommerce/'
     const navigate = useNavigate()
     const [perfil, setPerfil] = useState<Perfil | null>(null)
 
