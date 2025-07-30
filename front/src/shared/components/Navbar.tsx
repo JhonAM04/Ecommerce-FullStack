@@ -68,8 +68,8 @@ const Navbar = () => {
             </Menu>: 
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="hidden sm:ml-6 sm:block">
-                  <button type="button" onClick={()=>{Navigate(Paths.Login)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Login</button>
-                  <button type="button" onClick={()=>{Navigate(Paths.Register)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Registrarse</button>
+                  <button type="button" onClick={()=>{Navigate(Paths.Login)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">Login</button>
+                  <button type="button" onClick={()=>{Navigate(Paths.Register)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">Registrarse</button>
               </div>
              </div>
             }
@@ -83,8 +83,10 @@ const Navbar = () => {
                 <Link to={Paths.Nosotros} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Nosotros</Link>
                 <Link to={Paths.Products} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Productos</Link>
                 <Link to={Paths.Ubicanos} className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>Ubicanos</Link>
-                <button type="button" onClick={()=>{Navigate(Paths.Login)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Login</button>
-                <button type="button" onClick={()=>{Navigate(Paths.Register)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Registrarse</button>
+                {
+                  perfil? <></> : <><button type="button" onClick={()=>{Navigate(Paths.Login)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">Login</button>
+                <button type="button" onClick={()=>{Navigate(Paths.Register)}} className="text-[#886527] hover:text-black border border-[#886527] hover:bg-[#F8C264] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">Registrarse</button></>
+                }
         </div>
       </DisclosurePanel>
     </Disclosure>

@@ -9,6 +9,7 @@ import plin from '../assets/PLIN.png'
 import yape from '../assets/yape.jpg'
 import { CarritoStore } from "../shared/store/CarritoStore"
 import { Paths } from "../router/Routes"
+import {FadeLoader}  from 'react-spinners'
 
 const Producto = () => {
     const {id} = useParams()
@@ -16,11 +17,14 @@ const Producto = () => {
     const {GetProduct} = Api()
     const {agregar} = CarritoStore()
     const [producto, setProducto] = useState<Productos>()
+    const [loading, setLoading] = useState(true)
 
 
     const LoadData = async() => {
+        setLoading(true)
         const data = await GetProduct(Number(id))
         setProducto(data)
+        setLoading(false)
     }
 
     useEffect(()=>{
@@ -32,7 +36,9 @@ const Producto = () => {
     <>
        <section className="w-full pt-16">
         <div className="md:flex max-md:px-[20px] max-md:pb-[20px] justify-evenly items-center">
-            <img src={producto?.imagen} className="w-[500px]" />
+            {
+                loading? <FadeLoader /> : <img src={producto?.imagen} className="w-[500px]" />
+            }
             <div className="flex flex-col gap-2">
                 <h3 className="font-bold text-xl text-gray-300">ECLAT BOUTIQUE</h3>
                 <h2 className="font-bold text-xl">{producto?.nombre}</h2>

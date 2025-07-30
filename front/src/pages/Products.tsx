@@ -6,23 +6,25 @@ import banner from '../assets/banner productos.jpg'
 import itemHombres from '../assets/productos hombre.jpg'
 import itemMujeres from '../assets/productos mujer.jpg'
 import itemKids from '../assets/productos niños.jpg'
+import {FadeLoader}  from 'react-spinners'
 
 const Products = () => {
   const { ListProductos } = Api()
   const [productos, setProductos] = useState<Array<Productos>>([])
   const [productosFiltrados, setProductosFiltrados] = useState<Array<Productos>>([])
+  const [loading, setLoading] = useState(true)
 
   const [filtroCategoria, setFiltroCategoria] = useState<string[]>([])
   const [filtroTalla, setFiltroTalla] = useState<string[]>([])
 
-  useEffect(() => {
-    const getInfo = async () => {
-      const data = await ListProductos()
-      setProductos(data)
-      setProductosFiltrados(data)
-    }
-    getInfo()
-  }, [])
+  const getInfo = async () => {
+    setLoading(true)
+    const data = await ListProductos()
+    setProductos(data)
+    setProductosFiltrados(data)
+    setLoading(false)
+  }
+  
 
   
   const handleCategoriaChange = (categoria: string) => {
@@ -54,6 +56,10 @@ const Products = () => {
     
     setProductosFiltrados(filtrados)
   }
+
+  useEffect(()=>{
+    getInfo()
+  },[])
 
   useEffect(() => {
     filtrarProductos()
@@ -123,7 +129,7 @@ const Products = () => {
 
           {/* Productos */}
           <div className="flex">
-            {productosFiltrados.length === 0 ? (
+            {loading? <FadeLoader /> : productosFiltrados.length === 0 ? (
               <p>No se encontraron productos con los filtros seleccionados.</p>
             ) : (
               <div className="grid md:grid-cols-3 gap-4">
