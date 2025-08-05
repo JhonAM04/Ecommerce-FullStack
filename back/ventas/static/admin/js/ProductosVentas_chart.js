@@ -1,5 +1,5 @@
 
-fetch('http://127.0.0.1:8000/api/ecommerce/ventas').then((response)=>{
+fetch('https://ecommerce-fullstack-wfxr.onrender.com/api/ecommerce/ventas').then((response)=>{
     return response.json()
 }).then((data)=>{
   const ctx = document.getElementById('barchart')

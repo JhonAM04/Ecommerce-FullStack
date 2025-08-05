@@ -5,7 +5,7 @@ window.onload = function(){
         const inputName = this.id;
         const inputPrecio = inputName.replace('-producto','-precioUnitario');
         if(productoID){
-            $.get(`http://127.0.0.1:8000/api/ecommerce/productos/${productoID}`, function(data){
+            $.get(`https://ecommerce-fullstack-wfxr.onrender.com/api/ecommerce/productos/${productoID}`, function(data){
             $('#'+inputPrecio).val(data.precio)
         })
         }else{
