@@ -17,9 +17,9 @@ class TallasSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductosSerializer(serializers.ModelSerializer):
-    genero = serializers.SlugRelatedField(read_only=True, slug_field='descripcion')
-    talla = serializers.SlugRelatedField(read_only=True, slug_field='descripcion')
-    categoria = serializers.SlugRelatedField(read_only=True, slug_field='descripcion')
+    genero = GeneroSerializer()
+    talla = TallasSerializer()
+    categoria = CategoriaSerializer()
     class Meta:
         model = Producto
         fields = '__all__'

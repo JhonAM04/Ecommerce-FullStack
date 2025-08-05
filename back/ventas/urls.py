@@ -5,5 +5,7 @@ from ventas import views
 urlpatterns = [
     path('ecommerce/pedidosUsuario', views.PedidosView.as_view()),
     path('ecommerce/pedidos', views.PedidosListView.as_view()),
+    path('ecommerce/ventas', views.Ventas_productos),
+    path('ecommerce/graficos', views.mi_vista),
 ]
 

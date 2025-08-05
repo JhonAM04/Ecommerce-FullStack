@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Pedidos, PedidoDetalle
+from django.utils.html import format_html
 
 
 class PedidoDetalleInline(admin.TabularInline):
@@ -19,6 +20,12 @@ class PedidosAdmin(admin.ModelAdmin):
     list_display=('usuario','fecha','total')
     readonly_fields = ['total']
     inlines= [PedidoDetalleInline]
+
+    def changelist_view(self, request, extra_context=None):
+        if extra_context is None:
+            extra_context = {}
+        extra_context['show_boton_reporte'] = True
+        return super().changelist_view(request, extra_context=extra_context)
 
     def save_formset(self, request, form, formset, change):
         pedido = form.instance

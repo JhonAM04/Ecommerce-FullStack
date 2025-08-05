@@ -30,12 +30,14 @@ SECRET_KEY = 'django-insecure-j2e-#k7)60^2s#med!6nd^2y6qzb7aqy*vt0o9fy&s$clv=(@-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecommerce-fullstack-wfxr.onrender.com']
+ALLOWED_HOSTS = ['ecommerce-fullstack-wfxr.onrender.com','127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_tools_stats',  
+    'django_nvd3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
