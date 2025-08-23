@@ -1,8 +1,24 @@
+type Genero = {
+    id: number
+    descripcion: string
+}
+
+type Talla = {
+    id: number
+    descripcion: string
+}
+
+type Categoria = {
+    id: number
+    descripcion: string
+}
+
+
 export type Productos = {
     id: number
-    genero: string
-    talla: string
-    categoria: string
+    genero: Genero
+    talla: Talla
+    categoria: Categoria
     nombre: string
     precio: number
     stock: number

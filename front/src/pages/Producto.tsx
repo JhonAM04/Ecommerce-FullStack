@@ -44,7 +44,7 @@ const Producto = () => {
                 <h2 className="font-bold text-xl">{producto?.nombre}</h2>
                 <p>S/. {producto?.precio}</p>
                 <h4>Talla</h4>
-                <p className="border-1 w-fit p-1 bg-[#F8C264] font-bold">{producto?.talla}</p>
+                <p className="border-1 w-fit p-1 bg-[#F8C264] font-bold">{producto?.talla.descripcion}</p>
                 <div className="flex items-center justify-between">
                     <p>Prueba Cantidad</p>
                     <button onClick={()=> agregar(producto!)} className="border-1 p-2">Agregar al carrito</button>
