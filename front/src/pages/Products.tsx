@@ -47,11 +47,11 @@ const Products = () => {
     let filtrados = [...productos]
     
     if (filtroCategoria.length > 0) {
-      filtrados = filtrados.filter(p => filtroCategoria.includes(p.categoria))
+      filtrados = filtrados.filter(p => filtroCategoria.includes(p.categoria.descripcion))
     }
     
     if (filtroTalla.length > 0) {
-      filtrados = filtrados.filter(p => filtroTalla.includes(p.talla))
+      filtrados = filtrados.filter(p => filtroTalla.includes(p.talla.descripcion))
     }
     
     setProductosFiltrados(filtrados)
