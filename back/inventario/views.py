@@ -18,7 +18,7 @@ class TallasListView(generics.ListAPIView):
     serializer_class = TallasSerializer
 
 class ProductosListView(generics.ListAPIView):
-    queryset = Producto.objects.all()
+    queryset = Producto.objects.all().order_by('id')
     serializer_class = ProductosSerializer
 
 class ProductoDetailView(generics.RetrieveAPIView):

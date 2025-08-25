@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-j2e-#k7)60^2s#med!6nd^2y6qzb7aqy*vt0o9fy&s$clv=(@-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ecommerce-fullstack-wfxr.onrender.com','127.0.0.1']
+ALLOWED_HOSTS = ['ecommerce-fullstack-wfxr.onrender.com','127.0.0.1','localhost']
 
 
 # Application definition
@@ -143,6 +143,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         
         'rest_framework_simplejwt.authentication.JWTAuthentication',

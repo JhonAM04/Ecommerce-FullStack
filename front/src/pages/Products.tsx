@@ -20,6 +20,7 @@ const Products = () => {
   const getInfo = async () => {
     setLoading(true)
     const data = await ListProductos()
+    console.log(data)
     setProductos(data)
     setProductosFiltrados(data)
     setLoading(false)
