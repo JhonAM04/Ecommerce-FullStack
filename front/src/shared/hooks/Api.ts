@@ -33,8 +33,8 @@ const Api = () => {
         return data
     }
 
-    const ListProductos = async() => {
-        const bd = await fetch(`${URL}productos`)
+    const ListProductos = async(url:string) => {
+        const bd = await fetch(url)
         const data = await bd.json()
         return data
     }

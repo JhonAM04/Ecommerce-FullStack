@@ -13,16 +13,21 @@ const Products = () => {
   const [productos, setProductos] = useState<Array<Productos>>([])
   const [productosFiltrados, setProductosFiltrados] = useState<Array<Productos>>([])
   const [loading, setLoading] = useState(true)
+  const [nextPage, setNextPage] = useState(null)
+  const [prevPage, setPrevPage] = useState(null)
+  const page = 'https://ecommerce-fullstack-wfxr.onrender.com/api/ecommerce/productos'
 
   const [filtroCategoria, setFiltroCategoria] = useState<string[]>([])
   const [filtroTalla, setFiltroTalla] = useState<string[]>([])
 
-  const getInfo = async () => {
+  const getInfo = async (url:string) => {
     setLoading(true)
-    const data = await ListProductos()
+    const data = await ListProductos(url)
     console.log(data)
-    setProductos(data)
-    setProductosFiltrados(data)
+    setProductos(data.results)
+    setProductosFiltrados(data.results)
+    setNextPage(data.next)
+    setPrevPage(data.previous)
     setLoading(false)
   }
   
@@ -59,7 +64,7 @@ const Products = () => {
   }
 
   useEffect(()=>{
-    getInfo()
+    getInfo(page)
   },[])
 
   useEffect(() => {
@@ -129,15 +134,21 @@ const Products = () => {
           </div>
 
           {/* Productos */}
-          <div className="flex">
+          <div className="flex flex-col gap-1">
             {loading? <FadeLoader /> : productosFiltrados.length === 0 ? (
               <p>No se encontraron productos con los filtros seleccionados.</p>
             ) : (
-              <div className="grid md:grid-cols-3 gap-4">
-                {productosFiltrados.map(producto => (
-                  <CardsProducts producto={producto} key={producto.id} />
-                ))}
-              </div>
+              <>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {productosFiltrados.map(producto => (
+                    <CardsProducts producto={producto} key={producto.id} />
+                  ))}
+                </div>
+                <div>
+                  {prevPage && <button onClick={()=>{getInfo(prevPage!)}} className="border-1 rounded-[10px] p-1 mr-1">Anterior</button> }
+                  {nextPage && <button onClick={()=>{getInfo(nextPage!)}} className="border-1 rounded-[10px] p-1">Siguiente</button> }
+                </div>
+              </>
             )}
           </div>
         </div>
